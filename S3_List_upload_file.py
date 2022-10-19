@@ -31,6 +31,7 @@ def create_temp_tenant_session(access_role_arn, session_name, tenant_id, duratio
                 'Value': tenant_id
             }
         ]
+    )
     session = boto3.Session(aws_access_key_id=assume_role_response['Credentials']['AccessKeyId'],
                     aws_secret_access_key=assume_role_response['Credentials']['SecretAccessKey'],
                     aws_session_token=assume_role_response['Credentials']['SessionToken'])
@@ -58,7 +59,7 @@ def update_file_in_s3_coke(session,filename):
 
 
 def main():
-  session = create_temp_tenant_session("arn:aws:iam::xxxxxx:role/TrackingAccessRole","TenantID97","coke",900)
+  session = create_temp_tenant_session("arn:aws:iam::699601524344:role/TrackingAccessRole","TenantID97","coke",900)
   update_file_in_s3_coke(session,"coke")
   
 if __name__ == "__main__":
