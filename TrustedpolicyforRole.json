@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowAssumeRole",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::<AccountNumber>:role/TrackingServiceRole",
+                    "arn:aws:iam::<AccountNumber>:user/Aditya"
+                ]
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+                "StringLike": {
+                    "aws:RequestTag/TenantID": "*"
+                }
+            }
+        },
+        {
+            "Sid": "AllowSessionTags",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::<AccountNumber>:role/TrackingServiceRole",
+                    "arn:aws:iam::<AccountNumber>:user/Aditya"
+                ]
+            },
+            "Action": "sts:TagSession",
+            "Condition": {
+                "StringLike": {
+                    "aws:RequestTag/TenantID": "*"
+                }
+            }
+        }
+    ]
+}
